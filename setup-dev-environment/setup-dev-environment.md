@@ -46,11 +46,11 @@ Estimated Time: ~25 minutes
 
 3. Change to `mtdrworkshop` directory.
 
-	````
-	<copy>
-	cd ~/mtdrworkshop
-	</copy>
-	````
+  	````
+  	<copy>
+  	cd ~/mtdrworkshop
+  	</copy>
+  	````
 
 4. Set the execution mode for all Shell scripts.
 
@@ -58,9 +58,9 @@ Estimated Time: ~25 minutes
     <copy>chmod +x *.sh */*.sh</copy>
     ```
 
-	NOTE: THE CLOUD SHELL WILL DISCONNECT AFTER A CERTAIN PERIOD OF INACTIVITY.
+    NOTE: THE CLOUD SHELL WILL DISCONNECT AFTER A CERTAIN PERIOD OF INACTIVITY.
 
-	IF YOU ARE DISCONNECTED OR LOGGED OFF AND RETURN TO CLOUD SHELL, MAKE SURE YOU ARE IN THE ~/mtdrworkshop DIRECTORY.
+    IF YOU ARE DISCONNECTED OR LOGGED OFF AND RETURN TO CLOUD SHELL, MAKE SURE YOU ARE IN THE ~/mtdrworkshop DIRECTORY.
 
 ## Task 2: Create an OCI compartment and an OKE cluster in that compartment
 
@@ -158,29 +158,27 @@ Estimated Time: ~25 minutes
 
 5. Populate mtdrworkshopdbid.txt with the database OCID
 
-  - Create  the `~/mtdrworkshop/workingdir/mtdrworkshopdbid.txt` file.
+    - Create the "~/mtdrworkshop/workingdir/mtdrworkshopdbid.txt" file.
 
-    ```
-    <copy>touch ~/mtdrworkshop/workingdir/mtdrworkshopdbid.txt</copy>
-    ```
+        ```
+        <copy>touch ~/mtdrworkshop/workingdir/mtdrworkshopdbid.txt</copy>
+        ```
 
+        ![](images/42-copy-atp-ocids2.png " ")
 
-    ![](images/42-copy-atp-ocids2.png " ")
+    - Copy the OCID of the newly created database from the Cloud console and
+      add it into `~/mtdrworkshop/workingdir/mtdrworkshopdbid.txt` file.
 
-
-  - Copy the OCID of the newly created database from the Cloud console and
-    add it into `~/mtdrworkshop/workingdir/mtdrworkshopdbid.txt` file.
-
-    ```
-    eg.
-     echo ocid1.autonomousdatabase.oc1.xxx.xxxx  > ~/mtdrworkshop/workingdir/mtdrworkshopdbid.txt
-    ```
+        ```
+        eg.
+         echo ocid1.autonomousdatabase.oc1.xxx.xxxx  > ~/mtdrworkshop/workingdir/mtdrworkshopdbid.txt
+        ```
 
 
 6. Generate the Wallet for your ATP Connectivity
 
 	- Still in Cloud Shell, make sure you are in the
-		`~/mtdrworkshop/setup-dev-environment` directory.
+		"~/mtdrworkshop/setup-dev-environment" directory.
 
 	- Copy the following command and replace $OCID by the
      copied OCID.
@@ -201,37 +199,37 @@ Estimated Time: ~25 minutes
 
 7. Create TODOUSER using sql utility in Cloud shell
 
-	- Stay in mtdrwokshop/setup-dev-environment directory and launch
-		sql with /nolog option
+    - Stay in mtdrwokshop/setup-dev-environment directory and launch
+      sql with /nolog option
 
-		![](images/SQLCl-Cloud-Shell.png " ")
+      ![](images/SQLCl-Cloud-Shell.png " ")
 
-	- Point the tool at your wallet.zip file
-		SQL> set cloudconfig wallet.zip
+    - Point the tool at your wallet.zip file
+      SQL> set cloudconfig wallet.zip
 
-     SQL> show tns
-     ![](images/Show-tns.png " ")
+      SQL> show tns
+      ![](images/Show-tns.png " ")
 
-     - Connect to mtdrdb_tp service, as database ADMIN user (remember the
-       password given to ADMIN above)
+    - Connect to mtdrdb_tp service, as database ADMIN user (remember the
+      password given to ADMIN above)
 
       SQL> connect ADMIN@mtdrdb_tp
 
-      - Create TODOUSER (replace <password> by a strong password).
+    - Create TODOUSER (replace <password> by a strong password).
 
         ```
         <copy> CREATE USER todouser IDENTIFIED BY <password> DEFAULT TABLESPACE data QUOTA UNLIMITED ON data;</copy>
         ```
-       - Grant some privileges to TODOUSER by executing the following command
+    - Grant some privileges to TODOUSER by executing the following command
 
         ```
         <copy>grant create session, create view, create sequence, create procedure, create table, create trigger, create type, create materialized view to todouser;</copy>
         ```
 
-      -  Verify you can connect as TODOUSER with the password you provided.
-      ```
-        SQL> <copy> connect todouser@mtdrdb_tp </copy>
-      ```
+    - Verify you can connect as TODOUSER with the password you provided.
+        ```
+          SQL> <copy> connect todouser@mtdrdb_tp </copy>
+        ```
 
 <!--
       - Create TODOITEM table
@@ -270,62 +268,57 @@ You are now going to create an Oracle Cloud Infrastructure Registry and an Auth 
 
   ![](images/21-dev-services-registry.png " ")
 
-
 2. Take note of the namespace (for example, `axkcsk2aiatb` shown in the image below).
 
   ![](images/22-create-repo.png " ")
 
-3. 	Click **Create Repository** , specify the following details for your new repository, and click **Create Repository**.
-	- Repository Name: `<tenancy name>/mtdrworkshop`
-	- Access: `Public`
+3. Click **Create Repository** , specify the following details for your new repository, and click **Create Repository**.
+	- Repository Name: <tenancy name>/mtdrworkshop
+	- Access: Public
 
-4.  Go to Cloud Shell and run `./addOCIRInfo.sh` with the namespace and repository name as arguments
+4. Go to Cloud Shell and run `./addOCIRInfo.sh` with the namespace and repository name as arguments
 
-		```
-		<copy>./addOCIRInfo.sh <namespace> <repository_name></copy>
-		```
-
+    ```
+    <copy>./addOCIRInfo.sh <namespace> <repository_name></copy>
+    ```
   	For example `./addOCIRInfo.sh axkcsk2aiatb mtdrworkshop.user1/mtdrworkshop`
 
 5. You will now create the Auth token by going back to the User Settings page. Click the Profile icon in the top-right corner of the Console and select **User Settings**.
 
-  ![](images/23-user-settings.png " ")
+    ![](images/23-user-settings.png " ")
 
 6. Click on **Auth Tokens** and select **Generate Token**.
 
-  ![](images/24-gen-auth-token.png " ")
+    ![](images/24-gen-auth-token.png " ")
 
 7. In the description type `mtdrworkshoptoken` and click **Generate Token**.
 
-  ![](images/25-gen-auth-token2.png " ")
+    ![](images/25-gen-auth-token2.png " ")
 
 8. Copy the token value.
 
-  ![](images/26-save-auth-token.png " ")
+    ![](images/26-save-auth-token.png " ")
 
-9. Go to Cloud Shell, at the workshop root directory and run the
-   dockerLogin.sh scripts
-
- ````
- . ./dockerLogin.sh  USERNAME AUTH_TOKEN
-
- ````
+9. Go to Cloud Shell, at the workshop root directory and run the dockerLogin.sh scripts
+    ````
+    . ./dockerLogin.sh  USERNAME AUTH_TOKEN
+    ````
 
     <USERNAME> - is the username used to log in (typically your email address). If your username is federated from Oracle Identity Cloud Service, you need to add the oracleidentitycloudservice/ prefix to your username.
 
     Example oracleidentitycloudservice/firstname.lastname@something.com
     Note: Please run the script with . ./dockerLogin.sh. This will help to export the username and AUTH token which is useful in the next step.
 
-	   `"<AUTH_TOKEN>"` - paste the generated token value and enclose the value in quotes.
+    "<AUTH_TOKEN>" - paste the generated token value and enclose the value in quotes.
 
-	For example
-  ```
-  . ./dockerLogin.sh user.foo@bar.com "8nO[BKNU5iwasdf2xeefU;yl"
-  ```
+    For example
+    ```
+    . ./dockerLogin.sh user.foo@bar.com "8nO[BKNU5iwasdf2xeefU;yl"
+    ```
 
-  Once successfully logged into Container Docker Registry, you should see the "Login Succeeded" in the cloud shell.
+    Once successfully logged into Container Docker Registry, you should see the "Login Succeeded" in the cloud shell.
 
-   We can list the existing docker images. Since this is the first time logging into Registry, no images will be shown.
+    We can list the existing docker images. Since this is the first time logging into Registry, no images will be shown.
 
     ```
     <copy>docker images </copy>
@@ -335,48 +328,49 @@ You are now going to create an Oracle Cloud Infrastructure Registry and an Auth 
 
   1. Create the mtdrworkshop/workingdir/mtdrworkshopclusterid.txt file
 
-        ```
-        <copy>touch ~/mtdrworkshop/workingdir/mtdrworkshopclusterid.txt</copy>
-        ```
+      ```
+      <copy>touch ~/mtdrworkshop/workingdir/mtdrworkshopclusterid.txt</copy>
+      ```
 
-    2. Navigate to **Developer Services > Kubernetes Clusters**
+  2. Navigate to **Developer Services > Kubernetes Clusters**
 
-    3. Copy the mdtrworkshopcluster id and paste into the newly created file
-      ![](images/mtdrworkshop-cluster-id.png " ")
+  3. Copy the mdtrworkshopcluster id and paste into the newly created file
+    ![](images/mtdrworkshop-cluster-id.png " ")
 
-          ```
-          example
-           echo ocid1.cluster.oc1.yyy.xxxxx  > ~/mtdrworkshop/workingdir/mtdrworkshopclusterid.txt
-          ```
+    ```
+    example
+     echo ocid1.cluster.oc1.yyy.xxxxx  > ~/mtdrworkshop/workingdir/mtdrworkshopclusterid.txt
+    ```
 
-    4. Run `./verifyOKEAndCreateKubeConfig.sh`
+  4. Run `./verifyOKEAndCreateKubeConfig.sh`
 
-        ```
-        <copy>./verifyOKEAndCreateKubeConfig.sh</copy>
-        ```
+    ```
+    <copy>./verifyOKEAndCreateKubeConfig.sh</copy>
+    ```
 
-     Notice `/.kube/config` is created for the OKE cluster.
+   Notice `/.kube/config` is created for the OKE cluster.
 
-      ![](images/verifyOKEOutput.png " ")
+    ![](images/verifyOKEOutput.png " ")
 
 
 ## Task 6:  Create a imagePullSecret  for the Tutorial
-To enable Kubernetes to pull an image from Oracle Cloud Infrastructure Registry when deploying an application, you need to create a Kubernetes secret. The secret includes all the login details you would provide if you were manually logging in to Oracle Cloud Infrastructure Registry using the docker login command, including your auth token.
 
-```
-<copy>
-echo MTDRWORKSHOP_OCIR_NAMESPACE = $MTDRWORKSHOP_OCIR_NAMESPACE
-echo MTDRWORKSHOP_REGION = $MTDRWORKSHOP_REGION
-echo MTDRWORKSHOP_OCIR_USER = $MTDRWORKSHOP_OCIR_USER
-echo MTDRWORKSHOP_OCIR_AUTHKEY = $MTDRWORKSHOP_OCIR_AUTHKEY
+  To enable Kubernetes to pull an image from Oracle Cloud Infrastructure Registry when deploying an application, you need to create a Kubernetes secret. The secret includes all the login details you would provide if you were manually logging in to Oracle Cloud Infrastructure Registry using the docker login command, including your auth token.
 
- kubectl create secret docker-registry todolistpullsecret3 --docker-server=$MTDRWORKSHOP_REGION --docker-username='$MTDRWORKSHOP_OCIR_NAMESPACE/$MTDRWORKSHOP_OCIR_USER'  --docker-password=$MTDRWORKSHOP_OCIR_AUTHKEY
- </copy>
-```
+  ```
+  <copy>
+  echo MTDRWORKSHOP_OCIR_NAMESPACE = $MTDRWORKSHOP_OCIR_NAMESPACE
+  echo MTDRWORKSHOP_REGION = $MTDRWORKSHOP_REGION
+  echo MTDRWORKSHOP_OCIR_USER = $MTDRWORKSHOP_OCIR_USER
+  echo MTDRWORKSHOP_OCIR_AUTHKEY = $MTDRWORKSHOP_OCIR_AUTHKEY
+
+   kubectl create secret docker-registry todolistpullsecret3 --docker-server=$MTDRWORKSHOP_REGION --docker-username='$MTDRWORKSHOP_OCIR_NAMESPACE/$MTDRWORKSHOP_OCIR_USER'  --docker-password=$MTDRWORKSHOP_OCIR_AUTHKEY
+   </copy>
+  ```
 
 
 
-## Task 6: Access OKE from the Cloud Shell
+## Task 7: Access OKE from the Cloud Shell
 
 1. Create the mtdrworkshop/workingdir/mtdrworkshopclusterid.txt file
 
@@ -404,7 +398,7 @@ echo MTDRWORKSHOP_OCIR_AUTHKEY = $MTDRWORKSHOP_OCIR_AUTHKEY
 
   ![](images/verifyOKEOutput.png " ")
 
-## Task 7: Configuring Network Security Rules
+## Task 8: Configuring Network Security Rules
 
 1. The network security rules control the inbound (Ingres) and the outbound (Egress) traffic. As we will be configuring the API Gateway in Part II, we will not set tight security rules at the Kubernetes cluster level.
 2. Navigate to **Developer Services > Kubernetes Clusters**
