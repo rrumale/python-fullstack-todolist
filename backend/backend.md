@@ -304,4 +304,5 @@ That is it. You have now exposed the applications endpoints through Oracle API G
 
 ## Acknowledgements
 
-* **Author** -  - Vijay Balebail, Dir. Product Management.
+* **Author** -  - Vijay Balebail, Director Product Management.
+* **Contributors** -  Satyabrata Mishra, Rajeev Rumale

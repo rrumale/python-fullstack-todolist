@@ -426,5 +426,5 @@ Congratulations, you have completed lab 1; you may now [proceed to the next lab]
 
 ## Acknowledgements
 
-* **Author** -  - Vijay Balebail, Dir. Product Management.
-* **Contributors** - Kuassi Mensah, Dir. Product Management, Java Database Access
+* **Author** -  - Vijay Balebail, Director Product Management.
+* **Contributors** - Kuassi Mensah, Satyabrata Mishra, Rajeev Rumale
