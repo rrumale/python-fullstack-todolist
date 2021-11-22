@@ -19,7 +19,7 @@ Estimated Time: ~25 minutes
 
 - This lab requires an [Oracle Cloud account](https://www.oracle.com/cloud/free/). You may use your own cloud account, a cloud account that you obtained through a trial, a Free Tier account, or a LiveLabs account.
 
-## Task 1: Launch the Cloud Shell and Clone mtdrworkshop GitHub repository
+## TASK 1: Launch the Cloud Shell and Clone mtdrworkshop GitHub repository
 
 1. Launch Cloud Shell
 
@@ -30,27 +30,27 @@ Estimated Time: ~25 minutes
 
 2. Clone the GitHub repo and move up the `mtdrworkshop` directory.
 
-    ````
+    ```
     <copy>
     git clone https://github.com/oracle/oci-react-samples.git
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     cd ~/oci-react-samples; mv mtdrworkshop ..
     </copy>
-    ````
+    ```
 
   You should now see `mtdrworkshop` in your root directory
 
 3. Change to `mtdrworkshop` directory.
 
-  	````
+  	```
   	<copy>
   	cd ~/mtdrworkshop
   	</copy>
-  	````
+  	```
 
 4. Set the execution mode for all Shell scripts.
 
@@ -58,11 +58,9 @@ Estimated Time: ~25 minutes
     <copy>chmod +x *.sh */*.sh</copy>
     ```
 
-    NOTE: THE CLOUD SHELL WILL DISCONNECT AFTER A CERTAIN PERIOD OF INACTIVITY.
+    >  **NOTE:** THE CLOUD SHELL WILL DISCONNECT AFTER A CERTAIN PERIOD OF INACTIVITY. IF YOU ARE DISCONNECTED OR LOGGED OFF AND RETURN TO CLOUD SHELL, MAKE SURE YOU ARE IN THE ~/mtdrworkshop DIRECTORY.
 
-    IF YOU ARE DISCONNECTED OR LOGGED OFF AND RETURN TO CLOUD SHELL, MAKE SURE YOU ARE IN THE ~/mtdrworkshop DIRECTORY.
-
-## Task 2: Create an OCI compartment and an OKE cluster in that compartment
+## TASK 2: Create an OCI compartment and an OKE cluster in that compartment
 
  1. Open up the hamburger menu in the top-left corner of the Console and select **Identity > Compartments**.
 
@@ -127,7 +125,7 @@ Estimated Time: ~25 minutes
     There is no need to wait for the cluster to be fully provisioned at this point as we will verify cluster creation and create a kube config in order to access it in a later step.
 
 
-## Task 3: Create the ATP database
+## TASK 3: Create the ATP database
 
 1. Open up the hamburger menu in the top-left corner of the Console and select **Autonomous Transaction Processing**.
 
@@ -169,9 +167,11 @@ Estimated Time: ~25 minutes
     - Copy the OCID of the newly created database from the Cloud console and
       add it into `~/mtdrworkshop/workingdir/mtdrworkshopdbid.txt` file.
 
+
+
         ```
-        eg.
-         echo ocid1.autonomousdatabase.oc1.xxx.xxxx  > ~/mtdrworkshop/workingdir/mtdrworkshopdbid.txt
+        For example
+        echo ocid1.autonomousdatabase.oc1.xxx.xxxx  > ~/mtdrworkshop/workingdir/mtdrworkshopdbid.txt
         ```
 
 
@@ -260,7 +260,7 @@ Estimated Time: ~25 minutes
 
 -->
 
-## Task 4: Create an OCI Registry and Auth key
+## TASK 4: Create an OCI Registry and Auth key
 
 You are now going to create an Oracle Cloud Infrastructure Registry and an Auth key. The Oracle Cloud Infrastructure Registry is an Oracle-managed registry that enables you to simplify your development-to-production workflow by storing, sharing, and managing development artifacts such as Docker images.
 
@@ -300,9 +300,9 @@ You are now going to create an Oracle Cloud Infrastructure Registry and an Auth 
     ![](images/26-save-auth-token.png " ")
 
 9. Go to Cloud Shell, at the workshop root directory and run the dockerLogin.sh scripts
-    ````
+    ```
     . ./dockerLogin.sh  USERNAME AUTH_TOKEN
-    ````
+    ```
 
     <USERNAME> - is the username used to log in (typically your email address). If your username is federated from Oracle Identity Cloud Service, you need to add the oracleidentitycloudservice/ prefix to your username.
 
@@ -311,8 +311,9 @@ You are now going to create an Oracle Cloud Infrastructure Registry and an Auth 
 
     "<AUTH_TOKEN>" - paste the generated token value and enclose the value in quotes.
 
-    For example
+
     ```
+    For example
     . ./dockerLogin.sh user.foo@bar.com "8nO[BKNU5iwasdf2xeefU;yl"
     ```
 
@@ -324,7 +325,7 @@ You are now going to create an Oracle Cloud Infrastructure Registry and an Auth 
     <copy>docker images </copy>
     ```
 
-## Task 5: Access OKE from the Cloud Shell
+## TASK 5: Access OKE from the Cloud Shell
 
   1. Create the mtdrworkshop/workingdir/mtdrworkshopclusterid.txt file
 
@@ -338,8 +339,8 @@ You are now going to create an Oracle Cloud Infrastructure Registry and an Auth 
     ![](images/mtdrworkshop-cluster-id.png " ")
 
     ```
-    example
-     echo ocid1.cluster.oc1.yyy.xxxxx  > ~/mtdrworkshop/workingdir/mtdrworkshopclusterid.txt
+    For example
+    echo ocid1.cluster.oc1.yyy.xxxxx  > ~/mtdrworkshop/workingdir/mtdrworkshopclusterid.txt
     ```
 
   4. Run `./verifyOKEAndCreateKubeConfig.sh`
@@ -353,7 +354,7 @@ You are now going to create an Oracle Cloud Infrastructure Registry and an Auth 
     ![](images/verifyOKEOutput.png " ")
 
 
-## Task 6:  Create a imagePullSecret  for the Tutorial
+## TASK 6:  Create a imagePullSecret  for the Tutorial
 
   To enable Kubernetes to pull an image from Oracle Cloud Infrastructure Registry when deploying an application, you need to create a Kubernetes secret. The secret includes all the login details you would provide if you were manually logging in to Oracle Cloud Infrastructure Registry using the docker login command, including your auth token.
 
@@ -370,7 +371,7 @@ You are now going to create an Oracle Cloud Infrastructure Registry and an Auth 
 
 
 
-## Task 7: Access OKE from the Cloud Shell
+## TASK 7: Access OKE from the Cloud Shell
 
 1. Create the mtdrworkshop/workingdir/mtdrworkshopclusterid.txt file
 
@@ -384,8 +385,8 @@ You are now going to create an Oracle Cloud Infrastructure Registry and an Auth 
   ![](images/mtdrworkshop-cluster-id.png " ")
 
       ```
-      example
-       echo ocid1.cluster.oc1.yyy.xxxxx  > ~/mtdrworkshop/workingdir/mtdrworkshopclusterid.txt
+      For example
+      echo ocid1.cluster.oc1.yyy.xxxxx  > ~/mtdrworkshop/workingdir/mtdrworkshopclusterid.txt
       ```
 
 4. Run `./verifyOKEAndCreateKubeConfig.sh`
@@ -398,7 +399,7 @@ You are now going to create an Oracle Cloud Infrastructure Registry and an Auth 
 
   ![](images/verifyOKEOutput.png " ")
 
-## Task 8: Configuring Network Security Rules
+## TASK 8: Configuring Network Security Rules
 
 1. The network security rules control the inbound (Ingres) and the outbound (Egress) traffic. As we will be configuring the API Gateway in Part II, we will not set tight security rules at the Kubernetes cluster level.
 2. Navigate to **Developer Services > Kubernetes Clusters**
@@ -427,4 +428,4 @@ Congratulations, you have completed lab 1; you may now [proceed to the next lab]
 ## Acknowledgements
 
 * **Author** -  - Vijay Balebail, Director Product Management.
-* **Contributors** - Kuassi Mensah, Satyabrata Mishra, Rajeev Rumale
+* **Contributors** - Satyabrata Mishra, Rajeev Rumale

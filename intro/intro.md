@@ -29,4 +29,4 @@ You may now [proceed to the next lab](#next).
 ## Acknowledgements
 
 * **Author** -  - Vijay Balebail, Dir. Product Management.
-* **Contributors** - Christopher Jones, Sr Principal Product Manager.
+* **Contributors** - Satyabrata Mishra, Senior Product Manager

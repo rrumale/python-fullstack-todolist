@@ -32,7 +32,7 @@ As with most React applications (https://reactjs.org/), this application uses re
 - This lab requires the completion of lab 1 and the provision of the OCI components.
 
 
-## Task 1: Set values for workshop environment variables
+## TASK 1: Set values for workshop environment variables
 
 1. Set the root directory of the workshop
 
@@ -47,7 +47,7 @@ As with most React applications (https://reactjs.org/), this application uses re
 	<copy>cd $MTDRWORKSHOP_LOCATION; source addAndSourcePropertiesInBashrc.sh</copy>
 	```
 
-## Task 2: Build and push the Docker images to the OCI Registry
+## TASK 2: Build and push the Docker images to the OCI Registry
 
 1. Ensure that the "DOCKER_REGISTRY" variable is set
 
@@ -128,7 +128,7 @@ As with most React applications (https://reactjs.org/), this application uses re
 
 	```
 
-## Task 3: Run Docker image locally and verify.
+## TASK 3: Run Docker image locally and verify.
  We created our image using the command docker build. Now that we have an image, we can run that image and see if our application is running correctly. Since we are running a application that listens on a port, we will have to run this in Detach or background mode.
 
 1. Run image locally and verify the image is running.
@@ -151,7 +151,7 @@ As with most React applications (https://reactjs.org/), this application uses re
 	</copy>
 	```
 
-## Task 4: Tag & push image to the registry.
+## TASK 4: Tag & push image to the registry.
 
 1. Now that you have a docker image running locally, you are now ready to run it from OKE cluster. Give a tag to the image that you're going to push to Oracle Cloud Infrastructure Registry by entering:
 
@@ -175,7 +175,7 @@ In a couple of minutes, you should have successfully built and pushed the images
 	![](images/Public-access.png " ")
 
 
-## Task 5: Deploy on Kubernetes and Check the Status
+## TASK 5: Deploy on Kubernetes and Check the Status
 
 1. Verify the todo.yaml file.
    Ensure you have the image name in oracle docker registory, the name of the imagePullSecret that was created in step 5 of lab1.
@@ -190,24 +190,23 @@ In a couple of minutes, you should have successfully built and pushed the images
 
 2. Check the status using the following commands. Verify the status is running for pods and you have a external-ip for LoadBalancer. You may have to rerun the command as it could take a couple of minutes to allocate a ip-address.
 
-	  ```
-	  $ <copy>
-	    kubectl get all </copy>
-	  $ kubectl get all
-	  NAME                                      READY   STATUS             RESTARTS   AGE
-	  pod/todo-deployment-657895dd59-qd89j      1/1     Running            0          3m1s
+	```
+	$<copy>kubectl get all</copy>
+	$ kubectl get all
+	NAME                                      READY   STATUS             RESTARTS   AGE
+	pod/todo-deployment-657895dd59-qd89j      1/1     Running            0          3m1s
 
-	  NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)          AGE
-	  service/kubernetes     ClusterIP      10.96.0.1     <none>           443/TCP          32h
-	  service/todo-service   LoadBalancer   10.96.77.65   132.226.36.134   8080:31093/TCP   3m1s
+	NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)          AGE
+	service/kubernetes     ClusterIP      10.96.0.1     <none>           443/TCP          32h
+	service/todo-service   LoadBalancer   10.96.77.65   132.226.36.134   8080:31093/TCP   3m1s
 
-	  NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
-	  deployment.apps/todo-deployment      1/1     1            1           3m2s
+	NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
+	deployment.apps/todo-deployment      1/1     1            1           3m2s
 
-	  NAME                                            DESIRED   CURRENT   READY   AGE
-	  replicaset.apps/todo-deployment-657895dd59      1         1         1       3m2s
+	NAME                                            DESIRED   CURRENT   READY   AGE
+	replicaset.apps/todo-deployment-657895dd59      1         1         1       3m2s
 
-	  ```
+  ```
 
 
 	The following command returns the Kubernetes service of ToDo application with a load balancer exposed through an external API
@@ -238,13 +237,13 @@ In a couple of minutes, you should have successfully built and pushed the images
     ```
     curl -X GET http://<external_ipaddress>:8080/todolist
     or
-    open a browser to the link http://<external_ipaddress:8080/todolist.
+    open a browser to the link http://<external_ipaddress:8080/todolist
     ```
     ![](./images/Application.png " ")
 
     In this app,  Flask app provides end points and data from ADB. The GUI is rendered using https://github.com/Semantic-Org/Semantic-UI in a html templates.
 
-## Task 6: Configure the API Gateway (optional steps)
+## TASK 6: Configure the API Gateway (optional steps)
 
 A common requirement is to build an API endpoints for docker applications with the HTTP/HTTPS URL of a back-end service.
 This can be done using Oracle API Gateway service.
@@ -287,7 +286,7 @@ Rather than exposing the Todo App directly, we will use the API Gateway to defin
 
 
 
-## Task 7: Testing the backend application through the API Gateway
+## TASK 7: Testing the backend application through the API Gateway
 
 1. Navigate to the newly create Gateway Deployment Detail an copy the endpoint
    ![](images/Gateway-endpoint.png " ")
